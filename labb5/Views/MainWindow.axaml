@@ -1,0 +1,63 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:labb5.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="labb5.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="labb5">
+
+    <Design.DataContext>
+        <!-- This only sets the DataContext for the previewer in an IDE,
+             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+        <vm:MainWindowViewModel />
+    </Design.DataContext>
+    
+    <Grid RowDefinitions="*,*" ColumnDefinitions="*,*" Background="Azure">
+        <ListBox Background="Azure" BorderBrush="Black" BorderThickness="0 0 3 3" Grid.Row="0" Grid.Column="0" ItemsSource="{Binding ContactList}" SelectedItem="{Binding SelectedItem}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <Border BorderBrush="Black" BorderThickness="2">
+                        <TextBlock Background="Azure" Foreground="Black" Text="{Binding Name}"></TextBlock>
+                        </Border>
+                        <Border BorderBrush="Black" BorderThickness="2 0 2 2">
+                        <TextBlock Background="Azure" Foreground="Black" Text="{Binding Phone}"></TextBlock>
+                        </Border>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        
+        <StackPanel Grid.Row="0" Grid.Column="1" Background="Azure">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="5">
+                <TextBlock Margin="5" VerticalAlignment="Center" Foreground="Black" Text="Name:"/>
+                <TextBox Width="180" Name="Name" Margin="5" Foreground="Black" Background="Azure" BorderBrush="Black" BorderThickness="3" Text="{Binding Name, Mode=TwoWay}"></TextBox>
+            </StackPanel>
+        
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="5">
+                <TextBlock Margin="5" VerticalAlignment="Center" Foreground="Black" Text="Surname:"/>
+                <TextBox Width="180" Name="Surname" Margin="5" Foreground="Black" Background="Azure" BorderBrush="Black" BorderThickness="3" Text="{Binding  Surname, Mode=TwoWay}"/>
+            </StackPanel>
+        
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="5">
+                <TextBlock Margin="5" VerticalAlignment="Center" Foreground="Black" Text="Phone:"/>
+                <TextBox Width="180" Name="Phone" Margin="5" Foreground="Black" Background="Azure" BorderBrush="Black" BorderThickness="3" Text="{Binding  Phone, Mode=TwoWay}"/>
+            </StackPanel>
+        
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="5">
+                <TextBlock Margin="5" VerticalAlignment="Center" Foreground="Black" Text="Email:"/>
+                <TextBox Width="180" Name="Email" Margin="5" Foreground="Black" Background="Azure" BorderBrush="Black" BorderThickness="3" Text="{Binding  Email, Mode=TwoWay}"/>
+            </StackPanel>
+        </StackPanel>
+        
+        
+        <Button BorderThickness="3" Foreground="Black" Background="Azure" BorderBrush="Black" Grid.Row="1" Grid.Column="0" Command="{Binding AddContact}" Width="200" Height="100"
+                HorizontalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">Add Contact</Button>
+        <Button BorderThickness="3" Foreground="Black" Background="Azure" BorderBrush="Black" Grid.Row="1" Grid.Column="1" Command="{Binding SaveChanges}" Width="200" Height="100"
+                HorizontalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">Save Changes</Button>
+    </Grid>
+
+</Window>
